@@ -25,15 +25,29 @@ const getAllLinks = async () => {
 const parseJsonData = ([pageOne, pageTwo]) => {
     const pageOneLinks = JSON.parse(pageOne)?.query.pages['49387265'].links;
     const pageTwoLinks = JSON.parse(pageTwo)?.query.pages['49387265'].links;
-    buildUrls({ pageOneLinks });
+    buildUrls(pageOneLinks.concat(pageTwoLinks));
 };
 
-const buildUrls = ({ pageOneLinks }) => {
-    const pageUrls = pageOneLinks.map(link => {
+const buildUrls = (allLinks) => {
+    // 682 links in total
+    const pageUrls = allLinks.map(link => {
+        normalize(link);
         return `https://en.wikipedia.org/wiki/api.php?action=query&titles=${link.title}&prop=pageprops&format=json&origin=*`
     });
-    console.log(pageUrls);
 };
+
+const normalize = (url) => {
+    /* take care of 
+        - spaces 
+        - single quote '
+        - question mark ?
+        - ampersand &
+        - double quote -- every title is wrapped in single quotes, unless there is 
+                          an apostrophe in the title
+    */
+
+    console.log(url)
+}
 
 getAllLinks();
 
