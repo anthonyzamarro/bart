@@ -1,6 +1,9 @@
 import { useState, useEffect } from 'react';
 import './App.css';
 
+// Components
+import ChalkBoard from './components/ChalkBoard';
+
 function App() {
   const [data, setData] = useState([]);
   useEffect(() => {
@@ -17,7 +20,7 @@ function App() {
       <header className="App-header">
         <div>
           {data !== null ?
-            data[Math.floor(Math.random() * 10)]
+            <ChalkBoard text={data[Math.floor(Math.random() * 10)]} />
             : 'Loading...'}
         </div>
       </header>
