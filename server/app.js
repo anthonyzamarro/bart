@@ -10,8 +10,9 @@ app.get("/api", async (req, res) => {
     // Promise(<pending>) is always logged if not resolved yet
     // call .then() on promise to capture result
     const resolvedHtml = await data.then(res => res);
-    console.log('heyy', data);
-    res.json({ resolvedHtml });
+    const randomGag = resolvedHtml[Math.floor(Math.random() * 10)];
+    console.log('gag', randomGag);
+    res.json({ randomGag });
 });
 
 app.listen(PORT, () => {

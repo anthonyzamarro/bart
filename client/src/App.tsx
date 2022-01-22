@@ -6,12 +6,12 @@ import ChalkBoard from './components/ChalkBoard';
 
 
 function App() {
-  const [data, setData] = useState([]);
+  const [data, setData] = useState('');
 
   const fetchData = async () => {
     await fetch("/api")
       .then((res) => res.json())
-      .then((data) => setData(data.resolvedHtml));
+      .then((data) => setData(data.randomGag));
   }
 
   useEffect(() => {
@@ -28,7 +28,7 @@ function App() {
       <header className="App-header">
         <div>
           {data !== null ?
-            <ChalkBoard text={data[Math.floor(Math.random() * 10)]} />
+            <ChalkBoard text={data} />
             : 'Loading...'}
         </div>
         <button onClick={handleClick}>New Gag</button>
