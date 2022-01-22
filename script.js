@@ -30,11 +30,10 @@ const parseJsonData = ([pageOne, pageTwo]) => {
 
 const buildUrls = (allTitles) => {
     // 682 links in total
-    const pageUrls = allTitles.map(title => {
-        return `https://en.wikipedia.org/w/api.php?format=json&action=query&prop=revisions&rvprop=content&rvsection=0&titles=${normalize(title.title)}`;
-        // return `https://en.wikipedia.org/wiki/api.php?action=query&titles=${normalize(title.title)}&prop=pageprops&format=json&origin=*`
-    });
-    console.log(pageUrls);
+    const pageUrls = allTitles.map(title =>
+        `https://en.wikipedia.org/w/api.php?format=json&action=query&prop=revisions&rvprop=content&rvsection=0&titles=${normalize(title.title)}`
+    );
+    // getPageData(pageUrls);
 };
 
 const normalize = (title) => {
@@ -76,20 +75,24 @@ const normalize = (title) => {
 
 };
 
-// const array =
-//     [
-//         `Bart's Dog Gets an "F"`,
-//         "Bart's Comet",
-//         "D'oh-in' in the Wind",
-//         "Dude, Where's My Ranch?",
-//         'Itchy & Scratchy & Marge'
-//     ]
+const getPageData = async (urls) => {
+    // "https://en.wikipedia.org/w/api.php?format=json&action=query&prop=revisions&rvprop=content&rvsection=0&titles=A_Streetcar_Named_Marge"
+    // "https://en.wikipedia.org/w/api.php?format=json&action=query&prop=revisions&rvprop=content&rvsection=0&titles=A_Tale_of_Two_Springfields"
+    // "https://en.wikipedia.org/w/api.php?format=json&action=query&prop=revisions&rvprop=content&rvsection=0&titles=Adam_I._Lapidus"
+    // "https://en.wikipedia.org/w/api.php?format=json&action=query&prop=revisions&rvprop=content&rvsection=0&titles=Al_Jean"
+    // "https://en.wikipedia.org/w/api.php?format=json&action=query&prop=revisions&rvprop=content&rvsection=0&titles=Alan_Smart"
+    // "https://en.wikipedia.org/w/api.php?format=json&action=query&prop=revisions&rvprop=content&rvsection=0&titles=All%27s_Fair_in_Oven_War"
+    // "https://en.wikipedia.org/w/api.php?format=json&action=query&prop=revisions&rvprop=content&rvsection=0&titles=All_About_Lisa"
+    console.log(urls);
+    const pageOne = await fetch(
+        `https://en.wikipedia.org/w/api.php?action=query&pageids=49387265&prop=links&pllimit=max&format=json&origin=*`
+    ).then(res => res.json())
+        .then(data => JSON.stringify(data))
+        .catch(error => console.log(`error: ${error}`));
+}
 
-// for (let index = 0; index < array.length; index++) {
-//     const element = array[index];
-//     normalize(element);
+getPageData();
 
-// }
 
 getAllLinks();
 
@@ -103,7 +106,7 @@ getAllLinks();
  * 
  * 
  * 
- * normalize url so that fetching is faster
+ * normalize url so that fetching is faster √
  * visit each URL and get pageid
  * store episode info in either DB or Google Sheet file
  * 
