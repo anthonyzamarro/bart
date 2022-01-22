@@ -4,16 +4,24 @@ import './App.css';
 // Components
 import ChalkBoard from './components/ChalkBoard';
 
+
 function App() {
   const [data, setData] = useState([]);
+
+  const fetchData = async () => {
+    await fetch("/api")
+      .then((res) => res.json())
+      .then((data) => setData(data.resolvedHtml));
+  }
+
   useEffect(() => {
-    const fetchData = async () => {
-      await fetch("/api")
-        .then((res) => res.json())
-        .then((data) => setData(data.resolvedHtml));
-    }
+    // show gag on initial render
     fetchData();
   }, []);
+
+  const handleClick = () => {
+    fetchData();
+  }
 
   return (
     <div className="App">
@@ -23,6 +31,7 @@ function App() {
             <ChalkBoard text={data[Math.floor(Math.random() * 10)]} />
             : 'Loading...'}
         </div>
+        <button onClick={handleClick}>New Gag</button>
       </header>
     </div>
   );

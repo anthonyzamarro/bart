@@ -6,7 +6,7 @@ interface Props {
 const ChalkBoard = ({ text }: Props) => {
     return (
         <>
-            board {text}
+            {text}
         </>
     )
 }
