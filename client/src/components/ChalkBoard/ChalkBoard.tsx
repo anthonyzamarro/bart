@@ -5,9 +5,9 @@ interface Props {
 
 const ChalkBoard = ({ text }: Props) => {
     return (
-        <>
+        <div data-testid="chalkboard">
             {text}
-        </>
+        </div>
     )
 }
 

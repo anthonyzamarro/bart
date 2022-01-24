@@ -6,6 +6,14 @@
       "dom.iterable",
       "esnext"
     ],
+    "types": [
+      "reflect-metadata",
+      "jest"
+    ],
+    "typeRoots": [
+      "./types",
+      "./node_modules/@types"
+    ],
     "allowJs": true,
     "skipLibCheck": true,
     "esModuleInterop": true,
@@ -20,7 +28,13 @@
     "noEmit": true,
     "jsx": "react-jsx"
   },
+  "exclude": [
+    "node_modules",
+    "**/*.spec.ts",
+    "**/*.test.ts"
+  ],
   "include": [
-    "src"
-  ]
+    "./src/**/*.tsx",
+    "./src/**/*.ts"
+  ],
 }
