@@ -1,3 +1,5 @@
+import { Wrapper, Chalkboard } from './styles/Chalkboard.styles';
+
 
 interface Props {
     text: string
@@ -5,9 +7,13 @@ interface Props {
 
 const ChalkBoard = ({ text }: Props) => {
     return (
-        <div data-testid="chalkboard">
-            {text}
-        </div>
+        <Wrapper data-testid="chalkboard">
+            <div className="wall wall-1">
+                <Chalkboard>{text}</Chalkboard>
+            </div>
+            <div className="wall wall-2"></div>
+            <div className='floor'></div>
+        </Wrapper>
     )
 }
 

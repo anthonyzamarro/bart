@@ -7,7 +7,6 @@
       "esnext"
     ],
     "types": [
-      "reflect-metadata",
       "jest"
     ],
     "typeRoots": [
@@ -36,5 +35,5 @@
   "include": [
     "./src/**/*.tsx",
     "./src/**/*.ts"
-  ],
+],
 }
