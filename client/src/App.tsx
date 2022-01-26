@@ -38,10 +38,11 @@ function App() {
       >
         New Gag
       </button>
-        <div>
+      <div className='chalkboard__container'>
           {data !== null ?
             <ChalkBoard text={data} />
             : 'Loading...'}
+        <div className="bottom"></div>
       </div>
     </div>
   );
